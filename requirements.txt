@@ -1,0 +1,10 @@
+# Kitchen Safety AI - Stage 3 Dependencies
+# Install with: pip install -r requirements.txt
+
+# Core dependencies (for now, very minimal!)
+# We're mostly using Python standard library
+
+# Optional: If you want to add more features later
+# opencv-python>=4.8.0      # For image processing (if needed)
+# numpy>=1.24.0             # For numerical operations
+# pillow>=10.0.0            # For image handling

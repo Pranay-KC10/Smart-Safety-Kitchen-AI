@@ -1,0 +1,105 @@
+# ==================== DOCKER COMPOSE FILE ====================
+# This file orchestrates ALL 3 Docker containers together
+#
+# What is docker-compose?
+# - Instead of running 3 separate "docker run" commands
+# - You run ONE command: "docker-compose up"
+# - It starts all 3 containers and connects them
+#
+# Think of it like a playlist:
+# - Each container is a song
+# - docker-compose plays them all together in harmony
+# ==============================================================
+
+version: '3.8'
+
+# Define the 3 services (containers)
+services:
+
+  # ==================== SERVICE 1: YOLO Detection ====================
+  # Your friend will create this - Stage 1
+  yolo_detector:
+    build: ./models/yolo              # Folder with YOLO Dockerfile
+    container_name: kitchen-ai-yolo
+    volumes:
+      - ./shared:/shared              # Shared folder between containers
+      - ./outputs:/outputs
+    # This container will:
+    # 1. Run YOLO on camera feed
+    # 2. Save detections to /shared/yolo_output.json
+    # 3. Save cropped images to /shared/crops/
+    # command: python detect.py
+
+
+  # ==================== SERVICE 2: Classifier ====================
+  # Your friend will create this - Stage 2
+  classifier:
+    build: ./models/classifier        # Folder with Classifier Dockerfile
+    container_name: kitchen-ai-classifier
+    volumes:
+      - ./shared:/shared
+      - ./outputs:/outputs
+    depends_on:
+      - yolo_detector                 # Wait for YOLO to start first
+    # This container will:
+    # 1. Read cropped images from /shared/crops/
+    # 2. Classify stove/knife status
+    # 3. Save results to /shared/classifier_output.json
+    # command: python classify.py
+
+
+  # ==================== SERVICE 3: Orchestrator (YOUR CODE!) ====================
+  orchestrator:
+    build: ./src                      # Your Dockerfile
+    container_name: kitchen-ai-stage3
+    volumes:
+      - ./shared:/shared
+      - ./outputs:/outputs
+    depends_on:
+      - yolo_detector
+      - classifier                    # Wait for both to start
+    # This container will:
+    # 1. Read /shared/yolo_output.json
+    # 2. Read /shared/classifier_output.json
+    # 3. Run safety checks
+    # 4. Generate alerts
+    command: python main.py
+
+
+# ==================== SHARED VOLUMES ====================
+# Volumes are like "shared folders" between containers
+# All 3 containers can read/write to ./shared/
+volumes:
+  shared:
+
+
+# ==============================================================
+# HOW TO USE THIS FILE:
+#
+# 1. Make sure Docker is installed on your laptop
+#    Download from: https://www.docker.com/products/docker-desktop
+#
+# 2. Open terminal in Kitchen_AI folder
+#
+# 3. Build all containers:
+#    docker-compose build
+#
+# 4. Run all 3 containers together:
+#    docker-compose up
+#
+# 5. Stop everything:
+#    Press Ctrl+C, then: docker-compose down
+#
+# ==============================================================
+# WHAT HAPPENS WHEN YOU RUN "docker-compose up":
+#
+# 1. Docker reads this file
+# 2. Builds 3 containers (if not built already)
+# 3. Creates shared folders
+# 4. Starts Container 1 (YOLO)
+# 5. Starts Container 2 (Classifier) - waits for YOLO
+# 6. Starts Container 3 (Orchestrator) - waits for both
+# 7. They all run together and share data via /shared/
+#
+# It's like having 3 separate computers working together!
+# ==============================================================

@@ -1,0 +1,27 @@
+{
+  "timestamp": "2025-12-01T10:30:45",
+  "frame_number": 150,
+  "detections": [
+    {
+      "class": "person",
+      "confidence": 0.95,
+      "bbox": [100, 150, 300, 450],
+      "center": [200, 300],
+      "cropped_image_path": "outputs/crops/person_001.jpg"
+    },
+    {
+      "class": "stove",
+      "confidence": 0.89,
+      "bbox": [500, 200, 700, 400],
+      "center": [600, 300],
+      "cropped_image_path": "outputs/crops/stove_001.jpg"
+    },
+    {
+      "class": "knife",
+      "confidence": 0.92,
+      "bbox": [250, 300, 320, 380],
+      "center": [285, 340],
+      "cropped_image_path": "outputs/crops/knife_001.jpg"
+    }
+  ]
+}

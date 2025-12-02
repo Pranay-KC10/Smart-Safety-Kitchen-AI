@@ -1,0 +1,30 @@
+[
+  {
+    "type": "STOVE_UNATTENDED",
+    "severity": "MEDIUM",
+    "message": " WARNING: Stove is ON and you're 400px away. Stay close when cooking!",
+    "details": {
+      "stove_status": "ON",
+      "distance_from_stove": 400,
+      "safe_distance": 200,
+      "person_detected": true
+    },
+    "timestamp": "2025-12-01T20:53:57.410016",
+    "frame_number": 150
+  },
+  {
+    "type": "KNIFE_UNATTENDED",
+    "severity": "LOW",
+    "message": " NOTICE: Knife left unattended. Please store it safely when not in use.",
+    "details": {
+      "knife_status": "unattended",
+      "confidence": 0.87,
+      "features": {
+        "near_person": false,
+        "on_cutting_board": false
+      }
+    },
+    "timestamp": "2025-12-01T20:53:57.410488",
+    "frame_number": 150
+  }
+]
