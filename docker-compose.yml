@@ -1,15 +1,4 @@
-# ==================== DOCKER COMPOSE FILE ====================
-# This file orchestrates ALL 3 Docker containers together
-#
-# What is docker-compose?
-# - Instead of running 3 separate "docker run" commands
-# - You run ONE command: "docker-compose up"
-# - It starts all 3 containers and connects them
-#
-# Think of it like a playlist:
-# - Each container is a song
-# - docker-compose plays them all together in harmony
-# ==============================================================
+
 
 version: '3.8'
 
@@ -17,7 +6,6 @@ version: '3.8'
 services:
 
   # ==================== SERVICE 1: YOLO Detection ====================
-  # Your friend will create this - Stage 1
   yolo_detector:
     build: ./models/yolo              # Folder with YOLO Dockerfile
     container_name: kitchen-ai-yolo
@@ -32,7 +20,6 @@ services:
 
 
   # ==================== SERVICE 2: Classifier ====================
-  # Your friend will create this - Stage 2
   classifier:
     build: ./models/classifier        # Folder with Classifier Dockerfile
     container_name: kitchen-ai-classifier
@@ -50,14 +37,14 @@ services:
 
   # ==================== SERVICE 3: Orchestrator (YOUR CODE!) ====================
   orchestrator:
-    build: ./src                      # Your Dockerfile
+    build: ./src                      
     container_name: kitchen-ai-stage3
     volumes:
       - ./shared:/shared
       - ./outputs:/outputs
     depends_on:
       - yolo_detector
-      - classifier                    # Wait for both to start
+      - classifier                    
     # This container will:
     # 1. Read /shared/yolo_output.json
     # 2. Read /shared/classifier_output.json
@@ -89,17 +76,4 @@ volumes:
 #
 # 5. Stop everything:
 #    Press Ctrl+C, then: docker-compose down
-#
-# ==============================================================
-# WHAT HAPPENS WHEN YOU RUN "docker-compose up":
-#
-# 1. Docker reads this file
-# 2. Builds 3 containers (if not built already)
-# 3. Creates shared folders
-# 4. Starts Container 1 (YOLO)
-# 5. Starts Container 2 (Classifier) - waits for YOLO
-# 6. Starts Container 3 (Orchestrator) - waits for both
-# 7. They all run together and share data via /shared/
-#
-# It's like having 3 separate computers working together!
 # ==============================================================

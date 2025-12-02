@@ -15,12 +15,7 @@ from typing import List, Dict
 
 class AlertSystem:
     def __init__(self, log_dir: str = "../outputs/logs"):
-        """
-        Initialize AlertSystem
-
-        Args:
-            log_dir: Directory to save alert logs
-        """
+        
         self.log_dir = log_dir
         os.makedirs(log_dir, exist_ok=True)
 
@@ -34,12 +29,7 @@ class AlertSystem:
         }
 
     def print_alert(self, alert: Dict):
-        """
-        Print formatted alert to console with colors
-
-        Args:
-            alert: Alert dictionary from SafetyChecker
-        """
+       
         severity = alert.get('severity', 'LOW')
         color = self.COLORS.get(severity, self.COLORS['RESET'])
         reset = self.COLORS['RESET']
@@ -58,13 +48,7 @@ class AlertSystem:
         print(f"{color}{'=' * 70}{reset}")
 
     def play_audio_alert(self, severity: str):
-        """
-        Play audio alert based on severity
-        (Uses system beep - works on most systems)
-
-        Args:
-            severity: Alert severity level
-        """
+       
         try:
             if severity == "CRITICAL":
                 # Emergency - 3 rapid beeps
@@ -82,12 +66,7 @@ class AlertSystem:
             pass
 
     def log_alert(self, alert: Dict):
-        """
-        Save alert to log file
-
-        Args:
-            alert: Alert dictionary to log
-        """
+        
         timestamp = datetime.now().strftime("%Y%m%d")
         log_file = os.path.join(self.log_dir, f"alerts_{timestamp}.json")
 
@@ -109,14 +88,7 @@ class AlertSystem:
             json.dump(logs, f, indent=2)
 
     def send_notifications(self, alerts: List[Dict], enable_audio: bool = True, enable_logging: bool = True):
-        """
-        Send all types of notifications for a list of alerts
-
-        Args:
-            alerts: List of alert dictionaries
-            enable_audio: Whether to play audio alerts
-            enable_logging: Whether to log alerts to file
-        """
+        
         if not alerts:
             print("\n[OK] No hazards detected. Kitchen is safe!")
             return
@@ -139,12 +111,7 @@ class AlertSystem:
             print(f"\n[LOG] Alerts logged to: {self.log_dir}")
 
     def get_alert_summary(self) -> Dict:
-        """
-        Get summary of all alerts from today's log
-
-        Returns:
-            Dictionary with alert statistics
-        """
+       
         timestamp = datetime.now().strftime("%Y%m%d")
         log_file = os.path.join(self.log_dir, f"alerts_{timestamp}.json")
 
@@ -172,7 +139,7 @@ class AlertSystem:
         }
 
     def print_daily_summary(self):
-        """Print summary of today's alerts"""
+        
         summary = self.get_alert_summary()
 
         print("\n" + "=" * 60)
@@ -195,7 +162,7 @@ class AlertSystem:
 
 
 def main():
-    """Test the AlertSystem"""
+
     print("=" * 60)
     print("ALERT SYSTEM TEST - Stage 3")
     print("=" * 60)

@@ -24,18 +24,9 @@ from alert_system import AlertSystem
 
 
 class KitchenSafetyOrchestrator:
-    """
-    Main orchestrator for Kitchen Safety AI
-    Coordinates between detection, classification, and alerting
-    """
-
+   
     def __init__(self, config_path: str = None):
-        """
-        Initialize the orchestrator
-
-        Args:
-            config_path: Path to configuration file (optional)
-        """
+        
         # Initialize safety checker with custom config if provided
         if config_path and Path(config_path).exists():
             with open(config_path, 'r') as f:
@@ -57,13 +48,7 @@ class KitchenSafetyOrchestrator:
         print()
 
     def process_frame(self, yolo_output_path: str, classifier_output_path: str):
-        """
-        Process a single frame (or set of detections)
-
-        Args:
-            yolo_output_path: Path to YOLO output JSON
-            classifier_output_path: Path to Classifier output JSON
-        """
+        
         # Load data from Stage 1 (YOLO) and Stage 2 (Classifier)
         try:
             with open(yolo_output_path, 'r') as f:
@@ -88,15 +73,7 @@ class KitchenSafetyOrchestrator:
         return alerts
 
     def run_continuous_monitoring(self, yolo_dir: str, classifier_dir: str, interval: int = 1):
-        """
-        Continuously monitor for new detections
-        (This will be used when integrating with real-time camera)
-
-        Args:
-            yolo_dir: Directory where YOLO saves outputs
-            classifier_dir: Directory where Classifier saves outputs
-            interval: Seconds between checks
-        """
+        
         print(f"[START] Starting continuous monitoring...")
         print(f"   Checking every {interval} second(s)")
         print(f"   Press Ctrl+C to stop\n")
@@ -118,9 +95,7 @@ class KitchenSafetyOrchestrator:
 
 
 def main():
-    """
-    Main function - Entry point for the application
-    """
+    
     print("=" * 70)
     print("SMART KITCHEN SAFETY AI - STAGE 3")
     print("=" * 70)
@@ -155,12 +130,6 @@ def main():
     print("\n" + "=" * 70)
     print("[DONE] Stage 3 Testing Complete!")
     print("=" * 70)
-    print("\n[NEXT STEPS]")
-    print("   1. Wait for your friend to complete Stages 1 & 2")
-    print("   2. Replace mock data with real YOLO + Classifier outputs")
-    print("   3. Integrate with camera feed")
-    print("   4. Add Docker containerization")
-    print()
 
 
 if __name__ == "__main__":
