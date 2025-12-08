@@ -34,9 +34,10 @@ class KitchenSafetyOrchestrator:
         else:
             # Default configuration
             config = {
-                "safe_distance_threshold": 200,
-                "confidence_threshold": 0.7,
-                "alert_cooldown": 5,
+                "safe_distance_threshold": 200,   # pixels - person must be near stove
+                "confidence_threshold": 0.7,      # minimum detection confidence
+                "alert_cooldown": 5,              # seconds between repeated alerts
+                "knife_danger_distance": 100,     # pixels - knife proximity to person
             }
 
         self.safety_checker = SafetyChecker(config)
@@ -95,7 +96,7 @@ class KitchenSafetyOrchestrator:
 
 
 def main():
-    
+
     print("=" * 70)
     print("SMART KITCHEN SAFETY AI - STAGE 3")
     print("=" * 70)
@@ -107,18 +108,34 @@ def main():
     # Test Mode: Process sample data
     print("[TEST] TEST MODE: Processing mock data\n")
 
-    # Test Scenario 1: Hazardous kitchen
-    print("[TEST 1] Hazardous Kitchen (stove unattended + knife)")
+    # Test Scenario 1: FIRE EMERGENCY
+    print("[TEST 1] FIRE EMERGENCY - Critical Alert!")
     print("-" * 70)
     alerts1 = orchestrator.process_frame(
+        yolo_output_path="../mock_data/yolo_output_fire.json",
+        classifier_output_path="../mock_data/classifier_output_fire.json"
+    )
+
+    # Test Scenario 2: Knife unattended (no person nearby)
+    print("\n\n[TEST 2] Knife Left Unattended - Warning!")
+    print("-" * 70)
+    alerts2 = orchestrator.process_frame(
+        yolo_output_path="../mock_data/yolo_output_knife.json",
+        classifier_output_path="../mock_data/classifier_output_knife.json"
+    )
+
+    # Test Scenario 3: Stove on with person too far
+    print("\n\n[TEST 3] Stove ON - Person Too Far Away!")
+    print("-" * 70)
+    alerts3 = orchestrator.process_frame(
         yolo_output_path="../mock_data/yolo_output.json",
         classifier_output_path="../mock_data/classifier_output.json"
     )
 
-    # Test Scenario 2: Safe kitchen
-    print("\n\n[TEST 2] Safe Kitchen (person near stove)")
+    # Test Scenario 4: Safe kitchen (person near stove)
+    print("\n\n[TEST 4] Safe Kitchen - Person Near Stove")
     print("-" * 70)
-    alerts2 = orchestrator.process_frame(
+    alerts4 = orchestrator.process_frame(
         yolo_output_path="../mock_data/yolo_output_safe.json",
         classifier_output_path="../mock_data/classifier_output_safe.json"
     )

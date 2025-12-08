@@ -1,0 +1,2 @@
+# Stage 3: Safety Logic & Alert System Dependencies
+# Minimal dependencies - mostly uses Python standard library
