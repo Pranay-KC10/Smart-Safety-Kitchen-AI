@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-12-01T10:45:00",
+  "frame_number": 600,
+  "detections": [
+    {
+      "class": "fire",
+      "confidence": 0.95,
+      "bbox": [450, 180, 550, 280],
+      "center": [500, 230],
+      "cropped_image_path": "outputs/crops/fire_001.jpg"
+    },
+    {
+      "class": "stove",
+      "confidence": 0.89,
+      "bbox": [400, 200, 600, 400],
+      "center": [500, 300],
+      "cropped_image_path": "outputs/crops/stove_003.jpg"
+    }
+  ]
+}

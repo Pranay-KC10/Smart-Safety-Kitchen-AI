@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+
+# Virtual environments
+venv/
+env/
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ML Models (large files - download separately)
+*.pt
+*.pth
+*.onnx
+*.engine
+
+# Outputs (generated at runtime)
+outputs/logs/*.json
+outputs/crops/
+outputs/videos/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/

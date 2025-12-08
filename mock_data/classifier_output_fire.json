@@ -1,0 +1,13 @@
+{
+  "timestamp": "2025-12-01T10:45:00",
+  "classifications": {
+    "stove_003.jpg": {
+      "status": "ON",
+      "confidence": 0.98,
+      "features": {
+        "has_flame": true,
+        "temperature_indicator": "red"
+      }
+    }
+  }
+}

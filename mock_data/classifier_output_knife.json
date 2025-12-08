@@ -1,0 +1,21 @@
+{
+  "timestamp": "2025-12-01T10:40:00",
+  "classifications": {
+    "knife_002.jpg": {
+      "status": "unattended",
+      "confidence": 0.91,
+      "features": {
+        "near_person": false,
+        "on_cutting_board": false
+      }
+    },
+    "stove_004.jpg": {
+      "status": "OFF",
+      "confidence": 0.88,
+      "features": {
+        "has_flame": false,
+        "temperature_indicator": "none"
+      }
+    }
+  }
+}

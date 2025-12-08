@@ -1,10 +1,19 @@
-# Kitchen Safety AI - Stage 3 Dependencies
+# Kitchen Safety AI - Dependencies
 # Install with: pip install -r requirements.txt
 
-# Core dependencies (for now, very minimal!)
-# We're mostly using Python standard library
+# ==== Core ML Dependencies ====
+ultralytics>=8.0.0        # YOLO object detection (Stage 1)
+torch>=2.0.0              # PyTorch for deep learning
+torchvision>=0.15.0       # Vision models and transforms
 
-# Optional: If you want to add more features later
-# opencv-python>=4.8.0      # For image processing (if needed)
-# numpy>=1.24.0             # For numerical operations
-# pillow>=10.0.0            # For image handling
+# ==== Image Processing ====
+opencv-python>=4.8.0      # Camera capture and image processing
+numpy>=1.24.0             # Numerical operations
+pillow>=10.0.0            # Image handling
+
+# ==== Optional: Audio Alerts ====
+# playsound>=1.3.0         # For audio alert playback (uncomment if needed)
+# pyttsx3>=2.90            # Text-to-speech for voice alerts (uncomment if needed)
+
+# ==== Development/Testing ====
+# pytest>=7.0.0            # For running tests
