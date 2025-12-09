@@ -12,6 +12,8 @@ venv/
 env/
 .env
 
+.jpg
+*.jpg/
 # IDE
 .vscode/
 .idea/
@@ -35,3 +37,5 @@ Thumbs.db
 
 # Jupyter
 .ipynb_checkpoints/
+.txt
+*.txt/
