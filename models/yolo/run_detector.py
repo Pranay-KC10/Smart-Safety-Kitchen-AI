@@ -28,15 +28,13 @@ class Detector:
         72: "refrigerator",
     }
 
-    # Custom class mapping for kitchen safety (when using custom trained model)
+    # Custom class mapping for kitchen safety (trained model)
     CUSTOM_CLASSES = {
-        0: "person",
-        1: "stove",
-        2: "knife",
-        3: "pan",
-        4: "pot",
-        5: "fire",
-        6: "smoke",
+        0: "Flame",
+        1: "Pan",
+        2: "Person",
+        3: "Stove",
+        4: "knife",
     }
 
     def __init__(self, model_path="yolo11n.pt", use_custom_classes=False, crop_dir="outputs/crops"):

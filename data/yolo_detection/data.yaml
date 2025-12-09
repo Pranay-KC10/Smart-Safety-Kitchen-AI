@@ -1,20 +1,8 @@
-# Kitchen Safety YOLO Dataset Configuration
-# Used for training YOLOv8 object detection
-
-path: .  # dataset root (relative to where you run training)
 train: train/images
 val: val/images
 
-# Classes to detect
-names:
-  0: person
-  1: knife
-  2: scissors
-  3: pan
-  4: stove
-  5: flame
+nc: 5
+names: ['Flame', 'Pan', 'Person', 'Stove', 'knife']
 
-# Note:
-# - 'person' can leverage COCO pretrained weights
-# - 'knife' and 'scissors' also in COCO but may need fine-tuning
-# - 'pan', 'stove', 'flame' need custom training data
+# Merged dataset: 403 train, 108 val images
+# Classes: Flame, Pan, Person, Stove, knife
