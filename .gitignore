@@ -21,7 +21,7 @@ env/
 *.swo
 
 # ML Models (large files - download separately)
-*.pt
+# *.pt  # Commented out to allow pushing trained model
 *.pth
 *.onnx
 *.engine
